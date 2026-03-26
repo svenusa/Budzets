@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <title>Budžeta plānotājs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="karte">
+    <h1>Budžeta plānotājs</h1>
+
+    <p>
+        <a href="/bilance">Atvērt bilances lapu</a>
+    </p>
+</div>
+
+<div class="karte">
+    <h2>Pievienot jaunu ierakstu</h2>
+
+    <form method="post" action="/pievienot">
+        <input type="number" step="0.01" name="summa" placeholder="Summa" required>
+        <input type="text" name="apraksts" placeholder="Apraksts" required>
+
+        <select name="tips" required>
+            <option value="Ienākums">Ienākums</option>
+            <option value="Izdevums">Izdevums</option>
+        </select>
+
+        <button type="submit">Pievienot</button>
+    </form>
+</div>
+
+<div class="karte">
+    <h2>Kopsavilkums</h2>
+    <div class="summary">
+        <div class="box">
+            <strong>Ienākumi:</strong><br>
+            {{ "%.2f"|format(ienakumi) }} €
+        </div>
+        <div class="box">
+            <strong>Izdevumi:</strong><br>
+            {{ "%.2f"|format(izdevumi) }} €
+        </div>
+        <div class="box">
+            <strong>Bilance:</strong><br>
+            {{ "%.2f"|format(bilance) }} €
+        </div>
+    </div>
+</div>
+
+<div class="karte">
+    <h2>Ieraksti</h2>
+
+    <div class="filtri">
+        <a href="/?filtrs=visi">Visi</a>
+        <a href="/?filtrs=ienakumi">Tikai ienākumi</a>
+        <a href="/?filtrs=izdevumi">Tikai izdevumi</a>
+    </div>
+
+    <ul>
+        {% for ier in dati %}
+            <li>
+                <div class="ieraksts">
+                    <div>
+                        <span class="{% if ier.tips == 'Ienākums' %}tips-ienakums{% else %}tips-izdevums{% endif %}">
+                            {{ ier.tips }}
+                        </span>
+                        — {{ "%.2f"|format(ier.summa) }} €
+                        <br>
+                        <strong>{{ ier.apraksts }}</strong>
+                        <br>
+                        <small>{{ ier.datums }}</small>
+                    </div>
+
+                    <form method="post" action="/dzest/{{ ier.id }}" style="margin:0;">
+                        <button class="dzest-btn" type="submit">Dzēst</button>
+                    </form>
+                </div>
+            </li>
+        {% else %}
+            <li>Nav neviena ieraksta.</li>
+        {% endfor %}
+    </ul>
+</div>
+
+</body>
+</html>

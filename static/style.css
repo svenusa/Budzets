@@ -1,0 +1,102 @@
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #ffffff;
+        }
+
+        h1, h2 {
+            color: #222;
+        }
+
+        .karte {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr auto;
+            gap: 10px;
+        }
+
+        input, select, button {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        button {
+            background: #2d7ef7;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1c67d6;
+        }
+
+        .summary {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .box {
+            background: #eef4ff;
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 180px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: #fafafa;
+            border: 1px solid #e5e5e5;
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .ieraksts {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .tips-ienakums {
+            color: green;
+            font-weight: bold;
+        }
+
+        .tips-izdevums {
+            color: red;
+            font-weight: bold;
+        }
+
+        .dzest-btn {
+            background: #d9534f;
+        }
+
+        .dzest-btn:hover {
+            background: #c9302c;
+        }
+
+        .filtri a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #2d7ef7;
+        }
+    
