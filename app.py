@@ -14,10 +14,10 @@ dati = []
 
 
 def ieladet_datus():
-    """
-    Nolasa datus no CSV faila un ieliek tos sarakstā 'dati'.
-    Ja fails neeksistē, programma vienkārši turpina darbu.
-    """
+ 
+    #Nolasa datus no CSV faila un ieliek tos sarakstā 'dati'.
+    #Ja fails neeksistē, programma vienkārši turpina darbu.
+    
     global dati
     dati = []
 
@@ -33,10 +33,10 @@ def ieladet_datus():
 
 
 def saglabat_datus():
-    """
-    Saglabā visus ierakstus CSV failā.
-    Katru reizi pārraksta failu no jauna, lai dati būtu aktuāli.
-    """
+    
+    #Saglabā visus ierakstus CSV failā.
+    #Katru reizi pārraksta failu no jauna, lai dati būtu aktuāli.
+    
     with open(CSV_FAILS, mode="w", newline="", encoding="utf-8") as fails:
         lauki = ["id", "tips", "summa", "apraksts", "datums"]
         rakstitajs = csv.DictWriter(fails, fieldnames=lauki)
@@ -45,33 +45,33 @@ def saglabat_datus():
 
 
 def aprakstit_bilanci():
-    """
-    Aprēķina:
-    - ienākumu summu
-    - izdevumu summu
-    - bilanci
+   
+    #Aprēķina:
+    #- ienākumu summu
+    #- izdevumu summu
+    #- bilanci
 
-    Bilance = ienākumi - izdevumi
-    """
+    #Bilance = ienākumi - izdevumi
+    
     ienakumi = sum(ier["summa"] for ier in dati if ier["tips"] == "Ienākums")
     izdevumi = sum(ier["summa"] for ier in dati if ier["tips"] == "Izdevums")
     bilance = ienakumi - izdevumi
     return ienakumi, izdevumi, bilance
 
 
-# Datus ielādējam uzreiz, kad programma стартē
+# Datus ielādē uzreiz, kad programma startē
 ieladet_datus()
 
 
 @app.route("/")
 def index():
-    """
-    Galvenā lapa.
-    Parāda:
-    - visus ierakstus
-    - bilanci
-    - filtrētu skatu pēc tipa
-    """
+    
+    #Galvenā lapa.
+    #Parāda:
+    #- visus ierakstus
+    #- bilanci
+    #- filtrētu skatu pēc tipa
+    
     filtrs = request.args.get("filtrs", "visi")
 
     # Filtrējam ierakstus pēc izvēles
@@ -96,13 +96,13 @@ def index():
 
 @app.route("/pievienot", methods=["POST"])
 def pievienot():
-    """
-    Pievieno jaunu ierakstu.
-    No formas saņem:
-    - tips
-    - summa
-    - apraksts
-    """
+    
+    #Pievieno jaunu ierakstu.
+    #No formas saņem:
+    #- tips
+    #- summa
+    #- apraksts
+   
     tips = request.form.get("tips", "").strip()
     summa = request.form.get("summa", "").strip()
     apraksts = request.form.get("apraksts", "").strip()
@@ -143,9 +143,9 @@ def pievienot():
 
 @app.route("/dzest/<id>", methods=["POST"])
 def dzest(id):
-    """
-    Dzēš ierakstu pēc ID.
-    """
+    
+    #Dzēš ierakstu pēc ID.
+    
     global dati
     dati = [ier for ier in dati if ier["id"] != id]
     saglabat_datus()
@@ -154,9 +154,9 @@ def dzest(id):
 
 @app.route("/bilance")
 def bilance_lapa():
-    """
-    Papildu lapa bilancei.
-    """
+    
+    #Papildu lapa bilancei.
+    
     ienakumi, izdevumi, bilance = aprakstit_bilanci()
     return render_template(
         "bilance.html",

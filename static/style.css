@@ -3,15 +3,15 @@
             max-width: 900px;
             margin: 0 auto;
             padding: 20px;
-            background: #ffffff;
+            background: #3b3939dd;
         }
 
-        h1, h2 {
-            color: #222;
+        h1, h2, p {
+            color: #dddd;
         }
 
         .karte {
-            background: white;
+            background: #000000dd;
             padding: 20px;
             border-radius: 12px;
             margin-bottom: 20px;
@@ -27,19 +27,19 @@
         input, select, button {
             padding: 10px;
             border-radius: 8px;
-            border: 1px solid #ccc;
+            border: 1px solid #dddd;
             font-size: 16px;
         }
 
         button {
-            background: #2d7ef7;
-            color: white;
+            background: #66f72d;
+            color: #ffffffdd;
             border: none;
             cursor: pointer;
         }
 
         button:hover {
-            background: #1c67d6;
+            background: #0dad15;
         }
 
         .summary {
@@ -49,7 +49,7 @@
         }
 
         .box {
-            background: #eef4ff;
+            background: #dddd;
             padding: 15px;
             border-radius: 10px;
             min-width: 180px;
@@ -61,8 +61,8 @@
         }
 
         li {
-            background: #fafafa;
-            border: 1px solid #e5e5e5;
+            background: #dddd;
+            border: 1px solid #dddd;
             padding: 12px;
             border-radius: 10px;
             margin-bottom: 10px;
@@ -97,6 +97,6 @@
         .filtri a {
             margin-right: 10px;
             text-decoration: none;
-            color: #2d7ef7;
+            color: #ffffffdd;
         }
     
